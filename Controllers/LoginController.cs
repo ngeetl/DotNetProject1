@@ -20,18 +20,29 @@ namespace DotNetProject1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string msg)
         {
-            return View();
+			ViewData["msg"] = msg;
+
+			return View();
         }
 
         [HttpPost]
         [Route("/login/login")]
-        public IActionResult LoginProc()
+        public IActionResult LoginProc([FromForm]UserModel input)
         {
+            try
+            {
+                var user = input.GetLoginUser();
 
+                // 로그인 작업
 
-            return null;
+                return Redirect("/");
+            }
+            catch (Exception ex)
+            {
+                return Redirect($"/login/login>msg={HttpUtility.UrlEncode(ex.Message)}");
+            }
         }
 
         public IActionResult Register(string msg)

@@ -25,7 +25,7 @@ namespace DotNetProject1.Models.Login
             this.Password = System.Convert.ToBase64String(hash);
         }
 
-        internal int Register()
+		internal int Register()
         {
             string sql = @"INSERT INTO t_user ( user_name, email, password ) SELECT @user_name, @email, @password";
 
@@ -38,5 +38,31 @@ namespace DotNetProject1.Models.Login
             }
         }
 
-    }
+		internal UserModel GetLoginUser()
+		{
+            string sql = @"SELECT user_seq, user_name, email, password FROM t_user WHERE user_name = @user_name";
+
+            UserModel user;
+
+            using (var connect = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=myweb;Uid=root;Pwd=yein0916;\r\n"))
+            {
+                connect.Open();
+
+                user = Dapper.SqlMapper.QuerySingleOrDefault(connect, sql, this);
+            }
+
+            if (user == null )
+            {
+                throw new Exception("존재하지 않는 사용자입니다.");
+            }
+            if (user.Password != this.Password)
+            {
+                throw new Exception("비밀번호를 확인해 주세요.");
+            }
+
+            return user;
+		}
+
+
+	}
 }
