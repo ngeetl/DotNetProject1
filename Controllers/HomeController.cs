@@ -22,70 +22,14 @@ namespace DotNetProject1.Controllers
 
         public IActionResult TicketList()
         {
-            var dataTable = new DataTable();
-
-            // db 연결
-            using (var connect = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=myweb;Uid=root;Pwd=yein0916;\r\n"))
-            {
-
-                try
-                {
-                    connect.Open();
-                    Console.WriteLine("Connection State: " + connect.State); // 연결 상태 출력
-                }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("An error occurred connecting to the database: " + ex.Message);
-                }
-
-                using (var cmd = new MySqlCommand())
-                {
-                    // string statuss = "In Progress";
-                    cmd.Connection = connect;
-                    cmd.CommandText = "SELECT * FROM t_ticket";
-                    // cmd.Parameters.AddWithValue("@statuss", statuss);
-
-                    var reader = cmd.ExecuteReader();
-                    dataTable.Load(reader);
-
-                }
-            }
-            Console.WriteLine(dataTable);
-            ViewData["dataTable"] = dataTable;
-            return View();
+            return View(TicketModel.GetList());
         }
 
-        public IActionResult TicketChange(int ticket_id, string title)
+        public IActionResult TicketChange([FromForm] TicketModel model)
         {
-            using (var connect = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=myweb;Uid=root;Pwd=yein0916;\r\n"))
-            {
-                try
-                {
-                    connect.Open();
-                }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine("An error occurred connecting to the database: " + ex.Message);
-                }
+            model.Update();
 
-                using (var cmd = new MySqlCommand())
-                {
-                    cmd.Connection = connect;
-                    cmd.CommandText = @"
-UPDATE t_ticket
-SET
-    title = @title
-WHERE
-	ticket_id = @ticket_id
-";
-                    cmd.Parameters.AddWithValue("@ticket_id", ticket_id);
-                    cmd.Parameters.AddWithValue("@title", title);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            return Json(new { msg = "OK" });
+            return Redirect("/home/ticketlist");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

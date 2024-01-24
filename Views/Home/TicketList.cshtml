@@ -1,7 +1,4 @@
-﻿@{
-    var dt = ViewData["dataTable"] as System.Data.DataTable;
-                                
-}
+﻿@model List<TicketModel>
 
     <div class="row">
         <div class="col-12">
@@ -60,25 +57,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (dt != null)
-                            {
-                                @foreach (System.Data.DataRow row in dt.Rows)
+                            
+                                @foreach (var ticket in Model)
                                 {
                                     <tr>
-                                        <td>@row["ticket_id"]</td>
-                                        <td>@row["title"]</td>
-                                        <td>@row["statuss"]</td>
+                                        <td>@ticket.Statuss/td>
+                                        <td>@ticket.Title</td>
+                                        <td>@ticket.Ticket_id</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                     </tr>
                                 }  
-                            }
-                            else
-                            {
-                                <tr><td>No data available.</td></tr>
-                            }
                             </tbody>
                             
                             
@@ -103,8 +94,8 @@
     </div>
     <div>
         <form id="form1" method="post" action="/home/ticketchange">
-        <input name="ticket_id" type="text" value="1" />
-        <input name="title" type="text" value="변경값" />
-        <button type="submit" class="btn btn-sm btn-primary">변경 전송</button>
+            <input name="ticket_id" type="text" value="" />
+            <input name="title" type="text" value="" />
+            <button type="submit" class="btn btn-sm btn-primary">변경 전송</button>
         </form>
     </div>
