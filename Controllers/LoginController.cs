@@ -2,6 +2,7 @@ using DotNetProject1.Models;
 using DotNetProject1.Models.Login;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
@@ -62,7 +63,6 @@ namespace DotNetProject1.Controllers
 			}
 			catch (Exception ex)
 			{
-				//return Json(ex.ToString());
 				return Redirect($"/login/login?msg={HttpUtility.UrlEncode(ex.Message)}");
 			}
 		}
@@ -99,6 +99,14 @@ namespace DotNetProject1.Controllers
 			{
 				return Redirect($"/login/register?msg={HttpUtility.UrlEncode(ex.Message)}");
 			}
+		}
+
+		[Authorize] // 인증된 사용자만 로그아웃 가능
+		public async Task<IActionResult> Logout()
+		{
+			await HttpContext.SignOutAsync();
+
+			return Redirect("/");
 		}
 	}
 }
