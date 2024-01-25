@@ -1,10 +1,11 @@
 ﻿using MySqlConnector;
+using System.Security.Claims;
 
 namespace DotNetProject1.Models.Login
 {
     public class UserModel
     {
-        public uint User_seq { get; set; }
+		public uint User_seq { get; set; }
         public string User_name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -48,10 +49,10 @@ namespace DotNetProject1.Models.Login
             {
                 connect.Open();
 
-                user = Dapper.SqlMapper.QuerySingleOrDefault(connect, sql, this);
+                user = Dapper.SqlMapper.QuerySingleOrDefault<UserModel>(connect, sql, this);
             }
 
-            if (user == null )
+            if (user == null)
             {
                 throw new Exception("존재하지 않는 사용자입니다.");
             }

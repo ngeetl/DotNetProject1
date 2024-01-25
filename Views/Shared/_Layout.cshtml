@@ -154,8 +154,8 @@
 						<!-- Notification -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-							   id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-							   aria-expanded="false">
+								id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
 								<span><i data-feather="bell" class="svg-icon"></i></span>
 								<span class="badge text-bg-primary notify-no rounded-circle">5</span>
 							</a>
@@ -286,15 +286,18 @@
 						<!-- User profile and search -->
 						<!-- ============================================================== -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
-							   aria-haspopup="true" aria-expanded="false">
-								<img src="/lib/adminmart-lite/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
-									 width="40">
-								<span class="ms-2 d-none d-lg-inline-block">
-									<span>Hello,</span> <span class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
-																									class="svg-icon"></i>
-								</span>
-							</a>
+							@if (User.Identity.IsAuthenticated)
+							{
+								<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+									<img src="/lib/adminmart-lite/assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
+									width="40">
+									<span class="ms-2 d-none d-lg-inline-block">
+										<span>Hello,</span> <span class="text-dark">@User.Identity.Name</span> <i data-feather="chevron-down"
+										class="svg-icon"></i>
+									</span>
+								</a>
+							}
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
 								<a class="dropdown-item" href="javascript:void(0)">
 									<i data-feather="user"
