@@ -110,3 +110,6 @@ namespace DotNetProject1.Controllers
 		}
 	}
 }
+
+
+// 쿠키 인증 참고: https://learn.microsoft.com/ko-kr/aspnet/core/security/authentication/cookie?view=aspnetcore-8.0
