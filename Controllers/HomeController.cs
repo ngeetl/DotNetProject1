@@ -32,7 +32,10 @@ namespace DotNetProject1.Controllers
             return Redirect("/home/ticketlist");
         }
         public IActionResult BoardList(string search)
+        {
 
+            return View(BoardModel.GetList(search));
+        }
 		public IActionResult BoardWrite()
 		{
 
