@@ -71,7 +71,9 @@ WHERE
 			{
 				connect.Open();
 
-				return Dapper.SqlMapper.QuerySingle<BoardModel>(connect, sql);
+				var parameters = new { Idx = idx };
+
+				return Dapper.SqlMapper.QuerySingle<BoardModel>(connect, sql, parameters);
 			}
 		}
 

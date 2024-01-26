@@ -1,6 +1,7 @@
 using DotNetProject1.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using MySqlConnector;
 using System.Data;
 using System.Diagnostics;
@@ -56,6 +57,54 @@ namespace DotNetProject1.Controllers
             model.Reg_username = User.Identity.Name;
 
             model.Insert();
+
+            return Redirect("/home/boardlist");
+        }
+        public IActionResult BoardView(uint idx)
+        {
+
+            return View(BoardModel.Get(idx));
+        }
+
+        [Authorize]
+        public IActionResult BoardEdit(uint idx, string type)
+		{
+            var model = BoardModel.Get(idx);
+            var userSeq = Convert.ToUInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (model.Reg_user != userSeq)
+            {
+                throw new Exception("수정할 수 있는 권한이 없습니다.");
+            }
+
+            if (type == "update")
+            {
+                return View(model);
+            }
+            else if (type == "delete")
+            {
+                model.Delete();
+                return Redirect("/home/boardlist");
+            }
+
+            throw new Exception("잘못된 요청입니다.");
+        }
+
+        [Authorize]
+        public IActionResult BoardEdit_Input(uint idx, string title, string contents)
+        {
+            var model = BoardModel.Get(idx);
+            var userSeq = Convert.ToUInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (model.Reg_user != userSeq)
+            {
+                throw new Exception("수정할 수 있는 권한이 없습니다.");
+            }
+
+            model.Title = title;
+            model.Contents = contents;
+
+            model.Update();
 
             return Redirect("/home/boardlist");
         }

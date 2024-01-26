@@ -1,0 +1,49 @@
+﻿@using System.Security.Claims
+@model BoardModel
+
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered no-wrap">
+						<colgroup>
+							<col style="width:100px" />
+							<col style="width:auto" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<td>@Model.Title</td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td><pre style="width:100%">@Model.Contents</pre></td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td>@Model.Reg_username (@Model.Reg_date.ToString("yyyy-MM-dd"))</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="text-right">
+					@if (Model.Reg_user == Convert.ToUInt32(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+					{
+						<form class="d-inline-block" asp-controller="Home" asp-action="BoardEdit" method="post">
+							<input type="hidden" name="idx" value="@Model.Idx" />
+							<input type="hidden" name="type" value="update" />
+							<button type="submit" class="btn btn-sm btn-primary">수정</button>
+						</form>
+						<form class="d-inline-block" asp-controller="Home" asp-action="BoardEdit" method="post">
+							<input type="hidden" name="idx" value="@Model.Idx" />
+							<input type="hidden" name="type" value="delete" />
+							<button type="submit" class="btn btn-sm btn-danger">삭제</button>
+						</form>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
