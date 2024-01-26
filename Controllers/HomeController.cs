@@ -31,8 +31,15 @@ namespace DotNetProject1.Controllers
 
             return Redirect("/home/ticketlist");
         }
+        public IActionResult BoardList(string search)
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult BoardWrite()
+		{
+
+			return View();
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

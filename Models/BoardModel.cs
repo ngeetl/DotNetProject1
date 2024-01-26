@@ -34,15 +34,18 @@ namespace DotNetProject1.Models
 FROM
 	t_board A
 WHERE
-	A.title LIKE CONCAT('%', IFNULL(@search, ''), '%')
+	A.title LIKE CONCAT('%', IFNULL(@search, ''), '%') 
 ORDER BY
     A.idx DESC";
-
-			using (var connect = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=myweb;Uid=root;Pwd=yein0916;\r\n"))
+            //CONCAT('%', IFNULL(@search, ''), '%'): @search 변수 값 앞뒤로 %를 붙여, 해당 변수에 어떤 값이 들어가든 그 값이 문자열 중간에 위치하는지 확인
+			 
+            using (var connect = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=myweb;Uid=root;Pwd=yein0916;\r\n"))
 			{
 				connect.Open();
+				
+				var parameters = new { search = search ?? string.Empty };
 
-				return Dapper.SqlMapper.Query<BoardModel>(connect, sql).ToList();
+				return Dapper.SqlMapper.Query<BoardModel>(connect, sql, parameters).ToList();
 			}
 		
 		}
