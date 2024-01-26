@@ -1,8 +1,10 @@
 using DotNetProject1.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySqlConnector;
 using System.Data;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace DotNetProject1.Controllers
 {
@@ -36,13 +38,29 @@ namespace DotNetProject1.Controllers
 
             return View(BoardModel.GetList(search));
         }
+
+        [Authorize]
 		public IActionResult BoardWrite()
 		{
-
 			return View();
 		}
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [Authorize]
+        public IActionResult BoardWrite_Input(string title, string contents)
+        {
+            var model = new BoardModel();
+
+            model.Title = title;   
+            model.Contents = contents;
+            model.Reg_user = Convert.ToUInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            model.Reg_username = User.Identity.Name;
+
+            model.Insert();
+
+            return Redirect("/home/boardlist");
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -76,9 +76,28 @@ WHERE
 		}
 
 
+		// 제목, 내용 체크
+		void CheckContents()
+		{
+            if (string.IsNullOrWhiteSpace(this.Title))
+            {
+                throw new Exception("제목을 입력해 주세요.");
+            }
+            if (string.IsNullOrWhiteSpace(this.Contents))
+            {
+                throw new Exception("내용을 입력해 주세요.");
+            }
+            if (string.IsNullOrWhiteSpace(this.Reg_username))
+            {
+                throw new Exception("작성자 이름을 입력해 주세요.");
+            }
+        }
+
 		public int Insert()
 		{
-			string sql = @"
+			CheckContents();
+
+            string sql = @"
 INSERT INTO t_board (
 	title
 	,contents
@@ -109,7 +128,9 @@ VALUES (
 
 		public int Update()
 		{
-			string sql = @"
+            CheckContents();
+
+            string sql = @"
 UPDATE t_board
 SET
     title = @title
