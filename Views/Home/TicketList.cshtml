@@ -1,7 +1,7 @@
 ﻿@model List<TicketModel>
 @{
 	int ticket_id = 0;
-	string title = "ss";
+	string title = "";
 
 	if (Model?.Count > 0)
 	{
@@ -9,6 +9,9 @@
 		title = Model[0].Title;
 	}
 }
+<!--Axios CDN-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <div class="row">
 	<div class="col-12">
 		<div class="card">
@@ -113,21 +116,33 @@
 		var ticket_id = $("#ticket_id").val();
 		var title = $("#title").val();
 
-		$.ajax({
+	@* $.ajax({
 			type: "POST",
 			url: "/Home/TicketChange",
 			dataType: "json",
 			data: {
-				"ticket_id": ticket_id,
-				"title": title
+			"ticket_id": ticket_id,
+			"title": title
 			},
 			success: function (data) {
-				alert(data.msg);
-				location.reload();
+			alert(data.msg);
+			location.reload();
 			},
 			error: function (xhr) {
-				alert(xhr.responseText);
+			alert(xhr.responseText);
 			}
+			}); *@
+
+			
+			axios.post("/home/TicketChange", {
+				"ticket_id": ticket_id,
+				"title": title
+			}).then(function (res) {
+				alert(res.data.title);
+				location.reload();
+			}).catch(function (xhr) {
+				alert(xhr.responseText);
+			});
+
 		});
-	});
 </script>
