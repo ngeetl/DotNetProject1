@@ -28,11 +28,12 @@ namespace DotNetProject1.Controllers
             return View(TicketModel.GetList());
         }
 
-        public IActionResult TicketChange([FromForm] TicketModel model)
+        public IActionResult TicketChange(TicketModel model)
         {
             model.Update();
 
-            return Redirect("/home/ticketlist");
+            return Json(new { msg = "OK" });
+            //return Redirect("/home/ticketlist");
         }
         public IActionResult BoardList(string search)
         {
