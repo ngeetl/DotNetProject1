@@ -32,7 +32,7 @@ namespace DotNetProject1.Controllers
         {
             model.Update();
 
-            return Json(model);
+            return Json(model); // ajax는 JSON 형태로 반환 받음
             //return Redirect("/home/ticketlist");
         }
         public IActionResult BoardList(string search)

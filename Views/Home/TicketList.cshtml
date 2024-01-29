@@ -110,6 +110,10 @@
 		<input id="title" type="text" value="@title" />
 		<button id="btn1" type="submit" class="btn btn-sm btn-primary">변경 전송</button>
 	</div>
+
+	<div>
+		<button id="btn2" type="submit" class="btn btn-sm btn-primary">Api Test</button>
+	</div>
 </div>
 <script>
 	$("#btn1").click(function () {
@@ -133,7 +137,7 @@
 			}
 			}); *@
 
-			
+
 			axios.post("/home/TicketChange", {
 				"ticket_id": ticket_id,
 				"title": title
@@ -144,5 +148,23 @@
 				alert(xhr.responseText);
 			});
 
+	});
+
+
+	$("#btn2").click(function () {
+		var ticket_id = $("#ticket_id").val();
+		var title = $("#title").val();
+
+	$.ajax({
+			type: "get",
+			url: "http://localhost:5285/WeatherForecast",
+			datatype: "json",
+			success: function (data) {
+			console.log(data);
+			},
+			error: function (xhr) {
+				console.log("실패: ", xhr.responseJson.message);
+			}
+			});
 		});
 </script>
