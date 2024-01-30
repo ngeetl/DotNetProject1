@@ -5,12 +5,12 @@
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
 	 style="background:url(/img/login/auth-bg.jpg) no-repeat center center;">
 	<div class="auth-box row text-center">
-		<div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(/img/login/3.jpg);">
+		<div class="col-lg-7 col-md-5 modal-bg-img" style="background: linear-gradient(to right, skyblue, orange);">
 		</div>
 		<div class="col-lg-5 col-md-7 bg-white">
 			<div class="p-3">
 				<img src="/img/login/icon.png" alt="wrapkit">
-				<h2 class="mt-3 text-center">Sign Up for Free</h2>
+				<h2 class="mt-3 text-center">회원가입</h2>
 				@if (string.IsNullOrWhiteSpace(msg) == false)
 				{
 					<div class="alert alert-danger">@msg</div>
@@ -20,29 +20,29 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<input name="user_name" class="form-control" type="text" placeholder="your name">
+								<input name="user_name" class="form-control" type="text" placeholder="사용자 이름">
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<input name="email" class="form-control" type="email" placeholder="email address">
+								<input name="email" class="form-control" type="email" placeholder="이메일">
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<input name="password" class="form-control" type="password" placeholder="password">
+								<input name="password" class="form-control" type="password" placeholder="비밀번호">
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<input name="password2" class="form-control" type="password" placeholder="password-check">
+								<input name="password2" class="form-control" type="password" placeholder="비밀번호 확인">
 							</div>
 						</div>
 						<div class="col-lg-12 text-center">
-							<button type="submit" class="btn w-100 btn-dark">Sign Up</button>
+							<button type="submit" class="btn w-100 btn-dark">회원가입</button>
 						</div>
 						<div class="col-lg-12 text-center mt-5">
-							Already have an account? <a href="/login" class="text-danger">Sign In</a>
+							이미 가입한 아이디가 있다면? <a href="/login" class="text-danger">로그인</a>
 						</div>
 					</div>
 				</form>

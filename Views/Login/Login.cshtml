@@ -4,15 +4,14 @@
 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
 	 style="background:url(/img/login/auth-bg.jpg) no-repeat center center;">
 	<div class="auth-box row">
-		<div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(/img/login/3.jpg);">
+		<div class="col-lg-7 col-md-5 modal-bg-img" style="background: linear-gradient(to right, skyblue, orange);">
 		</div>
 		<div class="col-lg-5 col-md-7 bg-white">
 			<div class="p-3">
 				<div class="text-center">
 					<img src="/img/login/icon.png" alt="wrapkit">
 				</div>
-				<h2 class="mt-3 text-center">Sign In</h2>
-				<p class="text-center">Enter your email address and password to access admin panel.</p>
+				<h2 class="mt-3 text-center">로그인</h2>
 				@if (string.IsNullOrWhiteSpace(msg) == false)
 				{
 					<div class="alert alert-danger">@msg</div>
@@ -22,23 +21,23 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<label class="form-label text-dark" for="uname">Username</label>
+								<label class="form-label text-dark" for="uname">사용자 이름</label>
 								<input class="form-control" name="user_name" type="text"
-									   placeholder="enter your username">
+									   placeholder="사용자 이름을 입력해 주세요">
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="form-group mb-3">
-								<label class="form-label text-dark" for="pwd">Password</label>
+								<label class="form-label text-dark" for="pwd">비밀번호</label>
 								<input class="form-control" name="password" type="password"
-									   placeholder="enter your password">
+									   placeholder="사용자 비밀번호를 입력해 주세요">
 							</div>
 						</div>
 						<div class="col-lg-12 text-center">
-							<button type="submit" class="btn w-100 btn-dark">Sign In</button>
+							<button type="submit" class="btn w-100 btn-dark">로그인</button>
 						</div>
 						<div class="col-lg-12 text-center mt-5">
-							Don't have an account? <a href="#" class="text-danger">Sign Up</a>
+							회원가입이 필요하신가요? <a href="/login/register" class="text-danger">회원가입</a>
 						</div>
 					</div>
 				</form>
