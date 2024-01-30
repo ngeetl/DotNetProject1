@@ -53,13 +53,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/lib/adminmart-lite/assets/images/favicon.png">
-	<title>Freedash Template - The Ultimate Multipurpose admin template</title>
+	<title>MyDiary</title>
 	<!-- Custom CSS -->
 	<link href="/lib/adminmart-lite/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
 	<link href="/lib/adminmart-lite/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -122,22 +120,15 @@
 							@* <img src="/lib/adminmart-lite/assets/images/freedashDark.svg" alt="" class="img-fluid"> *@
 						</a>
 					</div>
-
-					<a class="topbartoggler d-block d-lg-none waves-effect waves-light" href="javascript:void(0)"
-					   data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-					   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<i class="ti-more"></i>
-					</a>
 				</div>
-				
-				<div class="navbar-collapse collapse" id="navbarSupportedContent">
-				
-					<ul class="navbar-nav float-left me-auto ms-3 ps-1">
 
+				<div class="navbar-collapse collapse" id="navbarSupportedContent">
+
+					<ul class="navbar-nav float-left me-auto ms-3 ps-1">
 					</ul>
 
 					<ul class="navbar-nav float-end">
-					
+
 						<!-- User profile and search -->
 						<li class="nav-item dropdown">
 							@if (User.Identity.IsAuthenticated)
@@ -146,10 +137,11 @@
 								   aria-haspopup="true" aria-expanded="false">
 									<span class="ms-2 d-none d-lg-inline-block">
 										<span class="fs-2">👩🏻‍💻</span> <span class="fs-4 fw-bold text-dark">@User.Identity.Name 님</span> <i data-feather="chevron-down"
-																					   class="svg-icon"></i>
+																													class="svg-icon"></i>
 									</span>
 								</a>
-							} else
+							}
+							else
 							{
 								<a class="nav-link" href="/login/login">
 									<span class="ms-2 d-none d-lg-inline-block">
@@ -158,7 +150,7 @@
 								</a>
 							}
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
-								
+
 								<a class="dropdown-item" href="/login/logout">
 									<i data-feather="power"
 									   class="svg-icon me-2 ms-1"></i>
@@ -166,7 +158,7 @@
 								</a>
 							</div>
 						</li>
-			
+
 					</ul>
 				</div>
 			</nav>
@@ -175,7 +167,7 @@
 		<aside class="left-sidebar" data-sidebarbg="skin6">
 			@await Component.InvokeAsync("LeftMenu")
 		</aside>
-	
+
 		<div class="page-wrapper">
 
 			<div class="container-fluid">
