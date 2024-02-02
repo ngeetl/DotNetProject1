@@ -26,6 +26,8 @@
 CRUD 기능의 구현 과정에서는 데이터베이스와의 효율적인 상호작용과 쿼리 최적화의 필요성을 배웠으며, 더 나아가 LINQ 학습의 필요성을 느끼게 되는 계기가 되었습니다. <br/> 
 프로젝트 배포에 있어서 환경과 보안 구성에 어려움을 느꼈지만, 이는 향후 배포 프로세스 보완에 대한 학습 계획을 수립할 수 있는 기회가 되었습니다.
 
+#### API 저장소 바로가기: https://github.com/ngeetl/DotNetProject1-Api
+
 ## 기술 스택
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
